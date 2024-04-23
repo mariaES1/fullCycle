@@ -15,55 +15,62 @@ connection.connect((err) => {
     console.error('Erro ao conectar ao banco de dados:', err);
     return;
   }
-  console.log('Conexão bem-sucedida ao banco de dados MySQL');
-
-  const createTable = `CREATE TABLE people (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
-  )`;
-
-  connection.query(createTable, (err) => {
-    if (err) {
-      console.error('Erro ao criar a tabela:', err);
-      return;
-    }
-    console.log('Tabela "people" criada com sucesso.');
-  });
 });
 
-app.get('/', (res) => {
-    const name = 'Maria Eduarda';
-    const insertSql = `INSERT INTO people (name) VALUES ('${name}')`;
-
-    connection.query(insertSql, (err) => {
+function createPeopleTable() {
+    const createTableQuery = `
+      CREATE TABLE IF NOT EXISTS people (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL
+      )
+    `;
+    connection.query(createTableQuery, (err) => {
       if (err) {
-        console.error('Erro ao inserir nome na tabela:', err);
-        res.status(500).send('Erro ao inserir nome na tabela.');
+        console.error('Erro ao criar ou verificar a existência da tabela "people":', err);
         return;
       }
+      console.log('Tabela "people" criada ou verificada com sucesso.');
+    });
+}
+
+function insertName(name) {
+  const insertQuery = `INSERT INTO people (name) VALUES (?)`;
+  connection.query(insertQuery, [name], (err) => {
+    if (err) {
+      console.error('Erro ao inserir nome na tabela:', err);
+    }
+  });
+}
+
+function selectNames(callback) {
+  const selectQuery = 'SELECT name FROM people';
+  connection.query(selectQuery, (err, results) => {
+    if (err) {
+      console.error('Erro ao consultar nomes na tabela:', err);
+      return;
+    }
+    const names = results.map((row) => row.name);
+    callback(names);
+  });
+}
+createPeopleTable();
+
+app.get('/', (req, res) => {
+    const defaultName = 'Maria Eduarda';
   
-      console.log('Nome inserido com sucesso na tabela.');
-
-      const selectSql = 'SELECT name FROM people';
-      connection.query(selectSql, (err, results) => {
-        if (err) {
-          console.error('Erro ao consultar nomes na tabela:', err);
-          res.status(500).send('Erro ao consultar nomes na tabela.');
-          return;
-        }
-
-        const names = results.map((row) => row.name);
-
-        res.send(`
-          <h1>Full Cycle Rocks!</h1>
-          <p>Lista de nomes cadastrados:</p>
-          <ul>
-            ${names.map((name) => `<li>${name}</li>`).join('')}
-          </ul>
-        `);
-      });
+    insertName(defaultName);
+  
+    selectNames((names) => {
+      res.send(`
+        <h1>Full Cycle Rocks!</h1>
+        <p>Lista de nomes cadastrados:</p>
+        <ul>
+          ${names.map((name) => `<li>${name}</li>`).join('')}
+        </ul>
+      `);
     });
   });
+  
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
