@@ -9,7 +9,9 @@
   "dependencies": {
     "@swc/cli": "^0.4.0",
     "@swc/core": "^1.7.24",
-    "@swc/jest": "^0.2.36"
+    "@swc/jest": "^0.2.36",
+    "@types/uuid": "^10.0.0",
+    "uuid": "^10.0.0"
   },
   "scripts": {
     "test": "npm run tsc -- --noEmit && jest",
