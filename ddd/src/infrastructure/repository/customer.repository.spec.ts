@@ -96,6 +96,7 @@ describe("Customer repository unit tests", () => {
         const address1 = new Address("Street 1", 1, "Zipcode 1", "City 1");
         customer1.address = address1;
         customer1.addRewardPoints(10);
+        
         customer1.activate();
     
         const customer2 = new Customer("456", "Customer 2");
