@@ -14,19 +14,23 @@ export default class Customer {
     }
 
     get id(): string {
-        return this._id
+        return this._id;
     }
 
     get name(): string {
-        return this._name
+        return this._name;
     }
 
-    get rewardPoints(): number {
-        return this._rewardPoints
+    get address(): Address {
+        return this._address;
     }
 
     set address(address: Address) {
-        this._address = address
+        this._address = address;
+    }
+
+    get rewardPoints(): number {
+        return this._rewardPoints;
     }
 
     isActive(): boolean {
@@ -45,6 +49,11 @@ export default class Customer {
 
     changeName(name: string) {  //Motivo de nagócio para alterar uma propriedade
         this._name = name;
+        this.validate();
+    }
+
+    changeAddress(address: Address) {
+        this._address = address;
         this.validate();
     }
 
