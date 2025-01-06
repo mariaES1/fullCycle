@@ -1,7 +1,7 @@
 import Address from "./address";
 
 export default class Customer {
-    private _id: string;
+    private readonly _id: string;
     private _name: string = "";
     private _address!: Address;
     private _active: boolean = false;
