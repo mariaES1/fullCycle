@@ -86,7 +86,7 @@ describe("Customer repository unit tests", () => {
         const customerRepository = new CustomerRepository();
 
         expect(async () => {
-            const customerResult = await customerRepository.find("145Gd");
+            await customerRepository.find("145Gd");
         }).rejects.toThrow("Customer not found");
     }); 
 
