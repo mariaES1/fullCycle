@@ -5,6 +5,6 @@ export default class CustomerCreatedSecondHandler
   implements EventHandlerInterface<CustomerCreatedEvent>
 {
   handle(): void {
-    console.log("Esse é o primeiro console.log do evento: CustomerCreated");
+    console.log("Esse é o segundo console.log do evento: CustomerCreated");
   }
 }

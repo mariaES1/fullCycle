@@ -4,7 +4,7 @@ import CustomerChangeAddressEvent from "../customer/customer-change-address.even
 import CustomerCreatedEvent from "../customer/customer-created.event";
 import SendNotificationWhenChangeAddressHandler from "../customer/handler/send-change-address-notification.handler";
 import CustomerCreatedSecondHandler from "../customer/handler/send-customer-created-second-notification.handler";
-import CustomerCreatedFirstHandler from "../customer/handler/send-custumer-created-first-notification.handler";
+import CustomerCreatedFirstHandler from "../customer/handler/send-customer-created-first-notification.handler";
 import SendEmailWhenProductIsCreatedHandler from "../product/handler/send-email-when-product-is-created.handler";
 import ProductCreatedEvent from "../product/product-created.event";
 import EventDispatcher from "./event-dispatcher";
