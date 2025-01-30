@@ -1,13 +1,13 @@
-import Address from "../../entity/address";
-import Customer from "../../entity/customer";
-import CustomerChangeAddressEvent from "../customer/customer-change-address.event";
-import CustomerCreatedEvent from "../customer/customer-created.event";
-import SendNotificationWhenChangeAddressHandler from "../customer/handler/send-change-address-notification.handler";
-import CustomerCreatedSecondHandler from "../customer/handler/send-customer-created-second-notification.handler";
-import CustomerCreatedFirstHandler from "../customer/handler/send-customer-created-first-notification.handler";
-import SendEmailWhenProductIsCreatedHandler from "../product/handler/send-email-when-product-is-created.handler";
-import ProductCreatedEvent from "../product/product-created.event";
+import Address from "../../customer/value-object/address";
+import SendNotificationWhenChangeAddressHandler from "../../customer/event/handler/send-change-address-notification.handler";
+import CustomerCreatedSecondHandler from "../../customer/event/handler/send-customer-created-second-notification.handler";
+import CustomerCreatedFirstHandler from "../../customer/event/handler/send-customer-created-first-notification.handler";
+import SendEmailWhenProductIsCreatedHandler from "../../product/event/handler/send-email-when-product-is-created.handler";
 import EventDispatcher from "./event-dispatcher";
+import ProductCreatedEvent from "@src/domain/product/event/product-created.event";
+import Customer from "@src/domain/customer/entity/customer";
+import CustomerCreatedEvent from "@src/domain/customer/event/customer-created.event";
+import CustomerChangeAddressEvent from "@src/domain/customer/event/customer-change-address.event";
 
 describe("Domain events tests", () => {
   let eventDispatcher: EventDispatcher;

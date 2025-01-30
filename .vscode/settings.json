@@ -3,5 +3,6 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.semi": true,
-  "prettier.singleQuote": false
+  "prettier.singleQuote": false,
+  "typescript.updateImportsOnFileMove.enabled": "always"
 }

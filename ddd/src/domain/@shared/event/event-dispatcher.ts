@@ -1,6 +1,6 @@
-import EventDispatcherInterface from "./interfaces/event-dispatcher.interface";
-import EventHandlerInterface from "./interfaces/event-handler.interface";
-import EventInterface from "./interfaces/event.interface";
+import EventDispatcherInterface from "../interfaces/event-dispatcher.interface";
+import EventHandlerInterface from "../interfaces/event-handler.interface";
+import EventInterface from "../interfaces/event.interface";
 
 export default class EventDispatcher implements EventDispatcherInterface {
   private eventHandlers: { [eventName: string]: EventHandlerInterface[] } = {};

@@ -1,8 +1,8 @@
-import Address from "./domain/entity/address";
-import Customer from "./domain/entity/customer";
-import Order from "./domain/entity/order";
-import OrderItem from "./domain/entity/orderItem";
-import Product from "./domain/entity/product";
+import Address from "@src/domain/customer/value-object/address";
+import Customer from "@src/domain/customer/entity/customer";
+import Product from "@src/domain/product/entity/product";
+import OrderItem from "@src/domain/checkout/entity/orderItem";
+import Order from "@src/domain/checkout/entity/order";
 
 // Id Relation
 let customer = new Customer("123", "Lorem Ipsum");
